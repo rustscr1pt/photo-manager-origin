@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {defineEmits, defineProps} from "vue";
 import Button from 'primevue/button';
-import {selectorState} from "@/components/selectorState.ts";
+import {selectorState} from "@/structs/selectorState.ts";
 const props = defineProps<{
   modelValue : selectorState
 }>();

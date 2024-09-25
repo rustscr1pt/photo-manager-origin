@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {selectorState} from "@/components/selectorState.ts";
+import {selectorState} from "@/structs/selectorState.ts";
 const props = defineProps<{
   modelValue: selectorState;
 }>();

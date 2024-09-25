@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import RuleObject from "@/components/interfaces.ts";
+import RuleObject from "@/structs/interfaces.ts";
 const props = defineProps<{
   modelValue: RuleObject[]; // Expecting an array of RuleObject
 }>();

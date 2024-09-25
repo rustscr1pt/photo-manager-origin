@@ -1,8 +1,8 @@
 <script lang="ts">
 import Selector from "@/components/Selector.vue";
-import {selectorState} from "@/components/selectorState.ts";
+import {selectorState} from "@/structs/selectorState.ts";
 import SubmitForm from "@/components/SubmitForm.vue";
-import RuleObject from '@/components/interfaces.ts';
+import RuleObject from '@/structs/interfaces.ts';
 import TopDescription from "@/components/TopDescription.vue";  // Import interface
 
 export default {
