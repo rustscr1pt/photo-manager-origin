@@ -2,6 +2,7 @@
 import {defineEmits, defineProps} from "vue";
 import Button from 'primevue/button';
 import {selectorState} from "@/structs/selectorState.ts";
+import ImageButton from "@/components/ImageButton.vue";
 const props = defineProps<{
   modelValue : selectorState
 }>();
@@ -13,6 +14,14 @@ function updateState(newState : selectorState) {
 
 <template>
   <section>
+    <ImageButton
+        severity="info"
+        color="white"
+        icon="pi pi-image"
+        :model-value="modelValue"
+        label="Одно изображение"
+        @update:modelValue="updateState"
+    />
     <Button
         label="Одно изображение"
         @click="updateState(selectorState.OneImage)"
