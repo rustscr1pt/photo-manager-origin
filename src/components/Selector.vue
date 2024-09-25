@@ -16,10 +16,18 @@ function updateState(newState : selectorState) {
     <Button
         label="Одно изображение"
         @click="updateState(selectorState.OneImage)"
+        severity="info"
+        icon="pi pi-image"
+        rounded
+        :style="{color : 'white'}"
     />
     <Button
         label="Несколько изображений"
         @click="updateState(selectorState.ManyImages)"
+        severity="info"
+        icon="pi pi-images"
+        rounded
+        :style="{color : 'white'}"
     />
   </section>
 </template>
@@ -30,6 +38,7 @@ section {
   flex-direction: row;
   justify-content: space-evenly;
   width: 50%;
+  margin: 2.5% 0;
 }
 button {
   width: 40%;

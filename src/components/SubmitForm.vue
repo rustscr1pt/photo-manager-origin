@@ -7,8 +7,8 @@ const props = defineProps<{
 
 <template>
   <section class="submit-form-section">
-    <p v-if="props.modelValue === selectorState.OneImage">Select one image for uploading</p>
-    <p v-else>Select multiple images for uploading</p>
+    <p v-if="props.modelValue === selectorState.OneImage">Выберите одно изображение для загрузки</p>
+    <p v-else>Выберите до 9 изображений для загрузки</p>
   </section>
 </template>
 
