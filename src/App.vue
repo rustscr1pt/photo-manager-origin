@@ -3,10 +3,11 @@ import Selector from "@/components/Selector.vue";
 import {selectorState} from "@/structs/selectorState.ts";
 import SubmitForm from "@/components/SubmitForm.vue";
 import RuleObject from '@/structs/interfaces.ts';
-import TopDescription from "@/components/TopDescription.vue";  // Import interface
+import TopDescription from "@/components/TopDescription.vue";
+import SendImageComponent from "@/components/SendImageComponent.vue";  // Import interface
 
 export default {
-  components: {TopDescription, SubmitForm, Selector },
+  components: {SendImageComponent, TopDescription, SubmitForm, Selector },
 
   // Define the return type of `data()` method
   data(): { selector_state: selectorState; liArray: RuleObject[] } {
@@ -36,6 +37,7 @@ export default {
     <TopDescription v-model="liArray"/>
     <Selector v-model="selector_state" />
     <SubmitForm v-model="selector_state" />
+    <SendImageComponent/>
   </div>
 </template>
 
