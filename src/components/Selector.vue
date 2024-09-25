@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {defineEmits, defineProps} from "vue";
-import Button from 'primevue/button';
 import {selectorState} from "@/structs/selectorState.ts";
 import ImageButton from "@/components/ImageButton.vue";
 const props = defineProps<{
@@ -20,23 +19,19 @@ function updateState(newState : selectorState) {
         icon="pi pi-image"
         :model-value="modelValue"
         label="Одно изображение"
+        width="40"
+        font-size="1.2"
         @update:modelValue="updateState"
     />
-    <Button
-        label="Одно изображение"
-        @click="updateState(selectorState.OneImage)"
+    <ImageButton
         severity="info"
-        icon="pi pi-image"
-        rounded
-        :style="{color : 'white'}"
-    />
-    <Button
-        label="Несколько изображений"
-        @click="updateState(selectorState.ManyImages)"
-        severity="info"
+        color="white"
         icon="pi pi-images"
-        rounded
-        :style="{color : 'white'}"
+        :model-value="modelValue"
+        label="Несколько изображений"
+        width="40"
+        font-size="1.2"
+        @update:modelValue="updateState"
     />
   </section>
 </template>
@@ -48,9 +43,5 @@ section {
   justify-content: space-evenly;
   width: 50%;
   margin: 2.5% 0;
-}
-button {
-  width: 40%;
-  font-size: 1.2vw;
 }
 </style>

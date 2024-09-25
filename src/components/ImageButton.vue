@@ -8,7 +8,9 @@ const props = defineProps<{
   label : string,
   severity : string,
   icon : string,
-  color : string
+  color : string,
+  width : number,
+  fontSize : number
 }>()
 function updateState(newState : selectorState) {
   emit('update:modelValue', newState);
@@ -22,7 +24,11 @@ function updateState(newState : selectorState) {
       :severity="props.severity"
       :icon="props.icon"
       rounded
-      :style="{color : props.color}"
+      :style="{
+        color : props.color,
+        width : `${props.width}%`,
+        fontSize : `${props.fontSize}vw`
+      }"
   />
 </template>
 
