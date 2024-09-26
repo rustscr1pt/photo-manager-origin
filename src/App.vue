@@ -5,7 +5,8 @@ import {RuleObject} from '@/structs/interfaces.ts';
 import TopDescription from "@/components/TopDescription.vue";
 import SendImageComponent from "@/components/SendImageComponent.vue";
 import ImageButton from "@/components/ImageButton.vue";
-import ChangeScreensContainer from "@/components/ChangeScreensContainer.vue";  // Import interface
+import ChangeScreensContainer from "@/components/ChangeScreensContainer.vue";
+import ImagesDataTable from "@/components/ImagesDataTable.vue";  // Import interface
 
 export default {
   computed: {
@@ -13,7 +14,7 @@ export default {
       return selectorState
     }
   },
-  components: {ChangeScreensContainer, ImageButton, SendImageComponent, TopDescription, SubmitForm },
+  components: {ImagesDataTable, ChangeScreensContainer, ImageButton, SendImageComponent, TopDescription, SubmitForm },
   data(): { selector_state: selectorState; rulesArray: RuleObject[]; browseArray : RuleObject[] } {
     return {
       selector_state: selectorState.DeleteImages,
@@ -65,6 +66,7 @@ export default {
           :array-of-rules="browseArray"
           :selector-state="selector_state"
       />
+      <ImagesDataTable/>
     </div>
   </div>
 </template>
