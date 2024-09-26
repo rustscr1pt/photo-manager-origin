@@ -4,29 +4,8 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import extract_file_format from "@/structs/tool_functions/extract_file_format.ts";
 import TableDeleteButton from "@/components/TableDeleteButton.vue";
-import axios from "axios";
-import {fetch_url} from "@/structs/urls.ts";
 import {ImageData} from "@/structs/interfaces.ts";
-async function fetchImages() : Promise<string[]> {
-  try {
-    const response = await axios
-        .get(`${fetch_url}/image-plugin/extract_images/`, {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
-    if (response.data.extracted && response.data.extracted.length > 0) {
-      return response.data.extracted as string[];
-    }
-    else {
-      return ["Null"]
-    }
-  }
-  catch (err) {
-    console.log(err);
-    return ["Null"]
-  }
-}
+import fetchImages from "@/structs/tool_functions/fetchImages.ts";
 
 const imageData = ref<ImageData[]>([]);
 
