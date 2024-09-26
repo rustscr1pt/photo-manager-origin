@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import FileUpload from 'primevue/fileupload';
+import {fetch_url} from "@/structs/urls.ts";
 
 const selectedFile = ref<File | null>(null);
 function uploadImage(event : {files : File[]}) {
@@ -10,7 +11,7 @@ function uploadImage(event : {files : File[]}) {
     const formData = new FormData();
     formData.append('image', imageFile);
     axios
-        .post("/somepath", formData, {
+        .post(`${fetch_url}/image-plugin/add_images`, formData, {
           headers : {
             'Content-Type' : 'multipart/form-data'
           }
@@ -30,7 +31,6 @@ function uploadImage(event : {files : File[]}) {
 
 <template>
   <div>
-    <h2>Upload Image</h2>
     <FileUpload
         name="image"
         accept="image/*"

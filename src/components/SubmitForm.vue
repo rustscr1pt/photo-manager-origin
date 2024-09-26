@@ -7,8 +7,7 @@ const props = defineProps<{
 
 <template>
   <section class="submit-form-section">
-    <p v-if="props.modelValue === selectorState.OneImage">Выберите одно изображение для загрузки</p>
-    <p v-else>Выберите до 9 изображений для загрузки</p>
+    <p>Выберите до 10 изображений для загрузки</p>
   </section>
 </template>
 
@@ -18,5 +17,10 @@ const props = defineProps<{
   flex-direction: column;
   align-items: center;
   width: 50%;
+  margin: 2.5% 0;
+}
+p {
+  color: white;
+  font-size: 2vw;
 }
 </style>
