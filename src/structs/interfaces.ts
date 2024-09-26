@@ -6,4 +6,15 @@ interface ImageDataTableSample {
     extracted : string[]
 }
 
-export {RuleObject, ImageDataTableSample}
+interface ImageToDeletePost {
+    file_to_delete : string
+}
+
+interface ImageData {
+    index: string;
+    name: string;
+    category: string;
+    format: string;
+}
+
+export {RuleObject, ImageDataTableSample, ImageToDeletePost, ImageData}
