@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import RuleObject from "@/structs/interfaces.ts";
+import {RuleObject} from "@/structs/interfaces.ts";
 import {selectorState} from "@/structs/selectorState.ts";
 
 const props = defineProps<{

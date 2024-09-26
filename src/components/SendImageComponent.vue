@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import axios from 'axios';
 import FileUpload from 'primevue/fileupload';
 import {fetch_url} from "@/structs/urls.ts";
-
-const selectedFile = ref<File | null>(null);
 function uploadImage(event : {files : File[]}) {
   if (event.files.length > 0) {
     const imageFile = event.files[0];

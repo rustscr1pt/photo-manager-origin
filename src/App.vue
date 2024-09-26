@@ -1,7 +1,7 @@
 <script lang="ts">
 import {selectorState} from "@/structs/selectorState.ts";
 import SubmitForm from "@/components/SubmitForm.vue";
-import RuleObject from '@/structs/interfaces.ts';
+import {RuleObject} from '@/structs/interfaces.ts';
 import TopDescription from "@/components/TopDescription.vue";
 import SendImageComponent from "@/components/SendImageComponent.vue";
 import ImageButton from "@/components/ImageButton.vue";
