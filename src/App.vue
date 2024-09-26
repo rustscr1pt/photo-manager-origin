@@ -3,16 +3,21 @@ import {selectorState} from "@/structs/selectorState.ts";
 import SubmitForm from "@/components/SubmitForm.vue";
 import RuleObject from '@/structs/interfaces.ts';
 import TopDescription from "@/components/TopDescription.vue";
-import SendImageComponent from "@/components/SendImageComponent.vue";  // Import interface
+import SendImageComponent from "@/components/SendImageComponent.vue";
+import ImageButton from "@/components/ImageButton.vue";
+import ChangeScreensContainer from "@/components/ChangeScreensContainer.vue";  // Import interface
 
 export default {
-  components: {SendImageComponent, TopDescription, SubmitForm },
-
-  // Define the return type of `data()` method
-  data(): { selector_state: selectorState; liArray: RuleObject[] } {
+  computed: {
+    selectorState() {
+      return selectorState
+    }
+  },
+  components: {ChangeScreensContainer, ImageButton, SendImageComponent, TopDescription, SubmitForm },
+  data(): { selector_state: selectorState; rulesArray: RuleObject[]; browseArray : RuleObject[] } {
     return {
-      selector_state: selectorState.OneImage,
-      liArray: [
+      selector_state: selectorState.DeleteImages,
+      rulesArray: [
         {
           sentence: "Изображение должно быть квадратным."
         },
@@ -25,7 +30,15 @@ export default {
         {
           sentence: "Перед загрузкой постарайтесь максимально минифицировать размер изображения."
         }
-      ]
+      ] as RuleObject[],
+      browseArray : [
+        {
+          sentence: "Просмотрите списком изображения в каталоге."
+        },
+        {
+          sentence: "Удаляйте ненужные изображения при необходимости"
+        }
+      ] as RuleObject[]
     };
   }
 };
@@ -33,9 +46,19 @@ export default {
 
 <template>
   <div>
-    <TopDescription v-model="liArray"/>
-    <SubmitForm v-model="selector_state" />
-    <SendImageComponent/>
+    <ChangeScreensContainer :modelValue="selectorState"/>
+    <div v-if="selector_state === selectorState.UploadImages">
+      <TopDescription
+          :array-of-rules="rulesArray"
+      />
+      <SubmitForm v-model="selector_state" />
+      <SendImageComponent/>
+    </div>
+    <div v-else>
+      <TopDescription
+          :array-of-rules="browseArray"
+      />
+    </div>
   </div>
 </template>
 
@@ -44,5 +67,6 @@ div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 </style>

@@ -1,4 +1,4 @@
 export enum selectorState {
-    OneImage,
-    ManyImages
+    UploadImages,
+    DeleteImages
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import RuleObject from "@/structs/interfaces.ts";
 const props = defineProps<{
-  modelValue: RuleObject[]; // Expecting an array of RuleObject
+  arrayOfRules: RuleObject[]; // Expecting an array of RuleObject
 }>();
 </script>
 
@@ -14,7 +14,7 @@ const props = defineProps<{
     Правила для корректной загрузки:
   </h1>
   <ul>
-    <li v-for="li in props.modelValue">{{li.sentence}}</li>
+    <li v-for="li in props.arrayOfRules">{{li.sentence}}</li>
   </ul>
   </body>
 </template>

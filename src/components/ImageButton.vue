@@ -2,6 +2,7 @@
 import {selectorState} from "@/structs/selectorState.ts";
 import Button from "primevue/button";
 import {defineEmits} from "vue";
+
 const emit = defineEmits(['update:modelValue']);
 const props = defineProps<{
   modelValue : selectorState,
@@ -13,14 +14,19 @@ const props = defineProps<{
   fontSize : number
 }>()
 function updateState(newState : selectorState) {
-  emit('update:modelValue', newState);
+  if (newState === selectorState.UploadImages) {
+    emit('update:modelValue', selectorState.DeleteImages);
+  }
+  else {
+    emit('update:modelValue', selectorState.UploadImages);
+  }
 }
 </script>
 
 <template>
   <Button
       :label="props.label"
-      @click="updateState(selectorState.OneImage)"
+      @click="updateState(props.modelValue)"
       :severity="props.severity"
       :icon="props.icon"
       rounded
