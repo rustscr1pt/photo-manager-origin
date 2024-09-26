@@ -6,7 +6,7 @@ import {defineEmits} from "vue";
 const props = defineProps<{
   modelValue : selectorState
 }>();
-// We create emit so we could update the parent's value
+// We create emit, so we could update the parent's value
 const emit = defineEmits(['update:modelValue']);
 
 // We use function to update the value which this component will get in the future,

@@ -1,30 +1,44 @@
 <script setup lang="ts">
 import RuleObject from "@/structs/interfaces.ts";
+import {selectorState} from "@/structs/selectorState.ts";
+
 const props = defineProps<{
-  arrayOfRules: RuleObject[]; // Expecting an array of RuleObject
+  arrayOfRules: RuleObject[],
+  selectorState : selectorState
 }>();
 </script>
 
 <template>
-  <header class="presentation">
+  <h1 v-if="props.selectorState === selectorState.UploadImages" class="presentation">
     Загрузить новые изображения
-  </header>
-  <body>
-  <h1>
-    Правила для корректной загрузки:
   </h1>
-  <ul>
-    <li v-for="li in props.arrayOfRules">{{li.sentence}}</li>
-  </ul>
-  </body>
+  <h1 v-else>
+    Просмотреть изображения в базе
+  </h1>
+  <section class="TopDescriptionSection">
+    <h2 v-if="props.selectorState === selectorState.UploadImages" class="presentation">
+      Правила для корректной загрузки:
+    </h2>
+    <h2 v-else>
+      Возможности панели управления:
+    </h2>
+    <ul>
+      <li v-for="li in props.arrayOfRules">{{li.sentence}}</li>
+    </ul>
+  </section>
 </template>
 
 <style scoped>
-header {
+h1 {
+  width: 80%;
   font-size: 3vw;
   color: white;
+  text-align: center;
 }
-h1 {
-  font-size: 2vw;
+.TopDescriptionSection {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

@@ -33,10 +33,13 @@ export default {
       ] as RuleObject[],
       browseArray : [
         {
-          sentence: "Просмотрите списком изображения в каталоге."
+          sentence: "Вы можете просмотреть все активные изображения в каталоге"
         },
         {
-          sentence: "Удаляйте ненужные изображения при необходимости"
+          sentence: "Вы можете удалить изображение если считаете, что оно не нужно / не актуально"
+        },
+        {
+          sentence: "Вы можете узнать дополнительную информацию по поводу интересующего вас изображения"
         }
       ] as RuleObject[]
     };
@@ -44,21 +47,23 @@ export default {
 };
 </script>
 
-
+// using v-model we pass props that we would like to change in the future.
 <template>
   <div>
-    // using v-model we pass props that we would like to change in the future.
     <ChangeScreensContainer v-model="selector_state"/>
     <div v-if="selector_state === selectorState.UploadImages">
       <TopDescription
           :array-of-rules="rulesArray"
+          :selector-state="selector_state"/>
+      <SubmitForm
+          v-model="selector_state"
       />
-      <SubmitForm v-model="selector_state" />
       <SendImageComponent/>
     </div>
     <div v-else>
       <TopDescription
           :array-of-rules="browseArray"
+          :selector-state="selector_state"
       />
     </div>
   </div>
