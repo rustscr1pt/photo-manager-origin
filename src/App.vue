@@ -47,6 +47,7 @@ export default {
 
 <template>
   <div>
+    // using v-model we pass props that we would like to change in the future.
     <ChangeScreensContainer v-model="selector_state"/>
     <div v-if="selector_state === selectorState.UploadImages">
       <TopDescription

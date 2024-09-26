@@ -15,6 +15,7 @@ const props = defineProps<{
   fontSize : string
 }>()
 
+// Using this function to update the state when it's clicked
 function updateState() : void {
   const newState = props.modelValue === selectorState.UploadImages ? selectorState.DeleteImages : selectorState.UploadImages;
   emit('update:modelValue', newState);
