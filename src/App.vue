@@ -44,9 +44,10 @@ export default {
 };
 </script>
 
+
 <template>
   <div>
-    <ChangeScreensContainer :modelValue="selectorState"/>
+    <ChangeScreensContainer v-model="selector_state"/>
     <div v-if="selector_state === selectorState.UploadImages">
       <TopDescription
           :array-of-rules="rulesArray"

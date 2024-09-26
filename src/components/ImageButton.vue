@@ -4,29 +4,27 @@ import Button from "primevue/button";
 import {defineEmits} from "vue";
 
 const emit = defineEmits(['update:modelValue']);
+
 const props = defineProps<{
   modelValue : selectorState,
   label : string,
   severity : string,
   icon : string,
   color : string,
-  width : number,
-  fontSize : number
+  width : string,
+  fontSize : string
 }>()
-function updateState(newState : selectorState) {
-  if (newState === selectorState.UploadImages) {
-    emit('update:modelValue', selectorState.DeleteImages);
-  }
-  else {
-    emit('update:modelValue', selectorState.UploadImages);
-  }
+
+function updateState() : void {
+  const newState = props.modelValue === selectorState.UploadImages ? selectorState.DeleteImages : selectorState.UploadImages;
+  emit('update:modelValue', newState);
 }
 </script>
 
 <template>
   <Button
       :label="props.label"
-      @click="updateState(props.modelValue)"
+      @click="updateState"
       :severity="props.severity"
       :icon="props.icon"
       rounded
