@@ -6,7 +6,9 @@ import TopDescription from "@/components/TopDescription.vue";
 import SendImageComponent from "@/components/SendImageComponent.vue";
 import ImageButton from "@/components/ImageButton.vue";
 import ChangeScreensContainer from "@/components/ChangeScreensContainer.vue";
-import ImagesDataTable from "@/components/ImagesDataTable.vue";  // Import interface
+import ImagesDataTable from "@/components/ImagesDataTable.vue";
+import release_li_for_data from "@/structs/tool_functions/release_li_for_data.ts";
+import {ReleaseEnum} from "@/structs/ReleaseEnum.ts"; // Import interface
 
 export default {
   computed: {
@@ -18,31 +20,8 @@ export default {
   data(): { selector_state: selectorState; rulesArray: RuleObject[]; browseArray : RuleObject[] } {
     return {
       selector_state: selectorState.DeleteImages,
-      rulesArray: [
-        {
-          sentence: "Изображение должно быть квадратным."
-        },
-        {
-          sentence: "Изображение должно быть в разрешении 900х900."
-        },
-        {
-          sentence: "Изображение должно быть в формате .webp"
-        },
-        {
-          sentence: "Перед загрузкой постарайтесь максимально минифицировать размер изображения."
-        }
-      ] as RuleObject[],
-      browseArray : [
-        {
-          sentence: "Вы можете просмотреть все активные изображения в каталоге"
-        },
-        {
-          sentence: "Вы можете удалить изображение если считаете, что оно не нужно / не актуально"
-        },
-        {
-          sentence: "Вы можете узнать дополнительную информацию по поводу интересующего вас изображения"
-        }
-      ] as RuleObject[]
+      rulesArray: release_li_for_data(ReleaseEnum.rulesArray),
+      browseArray : release_li_for_data(ReleaseEnum.browseArray)
     };
   }
 };
