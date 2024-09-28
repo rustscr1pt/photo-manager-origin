@@ -12,7 +12,7 @@ export default function release_li_for_data(condition : ReleaseEnum) : RuleObjec
                     sentence: "Изображение должно быть в разрешении 900х900."
                 },
                 {
-                    sentence: "Изображение должно быть в формате .webp"
+                    sentence: "Предпочтительный формат изображения - .webp"
                 },
                 {
                     sentence: "Перед загрузкой постарайтесь максимально минифицировать размер изображения."
