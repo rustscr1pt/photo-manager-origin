@@ -5,12 +5,21 @@ import Button from "primevue/button";
 import {AuthorizationBody, AuthorizationPostRequest} from "@/structs/interfaces.ts";
 import axios from "axios";
 import {fetch_url} from "@/structs/urls.ts";
-import {defineEmits} from "vue";
+import {defineEmits, ref, watch} from "vue";
+
 const props = defineProps<{
   modelValue : AuthorizationBody
 }>();
-const {isAuthorized, userLogin, userPassword} = props.modelValue;
+
+const userLogin = ref(props.modelValue.userLogin);
+const userPassword = ref(props.modelValue.userPassword);
+
 const emit = defineEmits(['update:modelValue']);
+
+watch(() => props.modelValue, (newValue) => {
+  userLogin.value = newValue.userLogin;
+  userPassword.value = newValue.userPassword;
+}, {immediate : true})
 function updateState() : void {
   const newValue : AuthorizationBody = {
     isAuthorized : true,
@@ -21,9 +30,10 @@ function updateState() : void {
 }
 function handleLoginAttempt() : void {
   const body : AuthorizationPostRequest = {
-    login : userLogin,
-    password : userPassword
-  }
+    login : userLogin.value,
+    password : userPassword.value
+  };
+  console.log(body)
   axios
       .post(`${fetch_url}/api/login/attempt`, body, {
         headers: {
@@ -31,8 +41,12 @@ function handleLoginAttempt() : void {
         }
       })
       .then((response) => {
-        console.log(response.data);
-        updateState();
+        if (response.data.is_succeed) {
+          updateState();
+        }
+        else {
+          console.log(response.data)
+        }
       })
       .catch((err) => {
         console.log(err)
