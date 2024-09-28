@@ -9,7 +9,7 @@ import fetchImages from "@/structs/tool_functions/fetchImages.ts";
 
 const imageData = ref<ImageData[]>([]);
 
-onMounted(async () => {
+async function loadTable() : Promise<void> {
   const images = await fetchImages();
   imageData.value = images.map((img, index) => ({
     index : `${index + 1}`,
@@ -17,19 +17,27 @@ onMounted(async () => {
     category : "Изображение",
     format : extract_file_format(img)
   }))
+}
+
+onMounted(async () => {
+  await loadTable()
 })
+
 </script>
 
 <template>
   <div class="card">
-    <DataTable :value="imageData" stripedRows tableStyle="min-width: 50rem">
+    <DataTable :value="imageData" style="width: 80%" stripedRows tableStyle="min-width: 50rem">
       <Column field="index" header="Индекс"></Column>
       <Column field="name" header="Ссылка"></Column>
       <Column field="category" header="Тип данных"></Column>
       <Column field="format" header="Формат"></Column>
       <Column header="Удалить">
         <template #body="slotProps">
-          <TableDeleteButton :link-to-delete="slotProps.data.name"/>
+          <TableDeleteButton
+              :link-to-delete="slotProps.data.name"
+              @imageDeleted="loadTable"
+          />
         </template>
       </Column>
     </DataTable>
