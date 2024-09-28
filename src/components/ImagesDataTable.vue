@@ -1,45 +1,69 @@
 <script setup lang="ts">
-import {onMounted, ref} from 'vue';
+import { ref, onMounted } from 'vue';
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import extract_file_format from "@/structs/tool_functions/extract_file_format.ts";
 import TableDeleteButton from "@/components/TableDeleteButton.vue";
-import {ImageData} from "@/structs/interfaces.ts";
+import { ImageData } from "@/structs/interfaces.ts";
 import fetchImages from "@/structs/tool_functions/fetchImages.ts";
 
+// Store the data for the table
 const imageData = ref<ImageData[]>([]);
+// Keep track of expanded rows
+const expandedRows = ref([]);
 
-async function loadTable() : Promise<void> {
+// Function to load the table data
+async function loadTable(): Promise<void> {
   const images = await fetchImages();
   imageData.value = images.map((img, index) => ({
-    index : `${index + 1}`,
-    name : `${img}`,
-    category : "Изображение",
-    format : extract_file_format(img)
-  }))
+    index: `${index + 1}`,
+    name: `${img}`,
+    category: "Изображение",
+    format: extract_file_format(img)
+  }));
 }
 
+// Load data on component mount
 onMounted(async () => {
-  await loadTable()
-})
-
+  await loadTable();
+});
 </script>
 
 <template>
   <div class="card">
-    <DataTable :value="imageData" style="width: 80%" stripedRows tableStyle="min-width: 50rem">
-      <Column field="index" header="Индекс"></Column>
-      <Column field="name" header="Ссылка"></Column>
-      <Column field="category" header="Тип данных"></Column>
-      <Column field="format" header="Формат"></Column>
-      <Column header="Удалить">
-        <template #body="slotProps">
-          <TableDeleteButton
-              :link-to-delete="slotProps.data.name"
-              @imageDeleted="loadTable"
-          />
-        </template>
-      </Column>
+    <DataTable
+        :value="imageData"
+        v-model:expandedRows="expandedRows"
+        :dataKey="imageData"
+        showGridlines
+        stripedRows
+        tableStyle="min-width: 50rem"
+        :style="{ width: '80%' }"
+    >
+    <Column expander style="width: 3em"/>
+    <Column field="index" header="Индекс"></Column>
+    <Column field="name" header="Ссылка"></Column>
+    <Column field="category" header="Тип данных"></Column>
+    <Column field="format" header="Формат"></Column>
+    <Column header="Удалить">
+      <template #body="slotProps">
+        <TableDeleteButton
+            :link-to-delete="slotProps.data.name"
+            @imageDeleted="loadTable"
+        />
+      </template>
+    </Column>
+
+    <!-- Expanded row content to display image -->
+    <template #expansion="slotProps">
+      <div class="photo-expansion-div">
+        <img
+            :src="slotProps.data.name"
+            :alt="slotProps.data.name"
+            class="expanded-image"
+        />
+      </div>
+    </template>
     </DataTable>
   </div>
 </template>
@@ -47,5 +71,19 @@ onMounted(async () => {
 <style scoped>
 .card {
   margin-top: 5%;
+}
+
+/* Styles for the expanded image */
+.photo-expansion-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.expanded-image {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
 }
 </style>
