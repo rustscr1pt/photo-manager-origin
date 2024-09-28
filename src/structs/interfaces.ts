@@ -17,4 +17,14 @@ interface ImageData {
     format: string;
 }
 
-export {RuleObject, ImageDataTableSample, ImageToDeletePost, ImageData}
+interface AuthorizationBody {
+    isAuthorized : boolean,
+    userLogin : string,
+    userPassword : string
+}
+interface AuthorizationPostRequest {
+    login : string,
+    password : string
+}
+export {RuleObject, ImageToDeletePost, ImageData, AuthorizationBody, AuthorizationPostRequest}
+

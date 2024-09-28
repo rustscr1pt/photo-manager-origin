@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import {selectorState} from "@/structs/selectorState.ts";
-const props = defineProps<{
-  modelValue: selectorState;
-}>();
 </script>
 
 <template>
