@@ -22,7 +22,7 @@ async function loadTable(): Promise<void> {
     format: extract_file_format(img)
   }));
 }
-
+//
 // Load data on component mount
 onMounted(async () => {
   await loadTable();
