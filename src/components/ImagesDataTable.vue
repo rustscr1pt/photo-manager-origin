@@ -34,7 +34,7 @@ onMounted(async () => {
     <DataTable
         :value="imageData"
         v-model:expandedRows="expandedRows"
-        :dataKey="imageData"
+        dataKey="index"
         showGridlines
         stripedRows
         tableStyle="min-width: 50rem"
