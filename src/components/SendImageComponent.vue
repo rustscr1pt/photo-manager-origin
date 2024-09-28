@@ -1,23 +1,33 @@
 <script setup lang="ts">
 import axios from 'axios';
 import FileUpload from 'primevue/fileupload';
+import Message from "primevue/message";
 import {fetch_url} from "@/structs/urls.ts";
+import {ref} from "vue";
+
+const message = ref('');
+const messageType = ref(''); // success or error
+
 function uploadImage(event : {files : File[]}) {
   if (event.files.length > 0) {
     const imageFile = event.files[0];
     const formData = new FormData();
-    formData.append('image', imageFile);
+    formData.append('file', imageFile);
     axios
-        .post(`${fetch_url}/image-plugin/add_images`, formData, {
+        .post(`${fetch_url}/image-plugin/add_image/`, formData, {
           headers : {
             'Content-Type' : 'multipart/form-data'
           }
         })
         .then(response => {
-          console.log("Image is uploaded successfully.", response.data)
+          console.log("Image is uploaded successfully.", response.data);
+          message.value = "Изображение успешно добавлено.";
+          messageType.value = 'success';
         })
         .catch(error => {
-          console.log(`Error when uploading the image ${error}`)
+          console.log(`Error when uploading the image ${error}`);
+          message.value = error;
+          messageType.value = 'error';
         });
   }
   else {
@@ -29,17 +39,22 @@ function uploadImage(event : {files : File[]}) {
 <template>
   <div>
     <FileUpload
-        name="image"
+        mode="basic"
+        name="file"
         accept="image/*"
-        customUpload
-        :uploadHandler="uploadImage"
+        :maxFileSize="1000000"
+        :multiple="false"
         :auto="false"
-        chooseLabel="Загрузка изображения"
-        uploadLabel="Upload"
+        @select="uploadImage"
+        chooseLabel="Browse"
     />
+    <Message class="margin-notification" v-if="message" :severity="messageType === 'success' ? 'success' : 'error'">{{message}}</Message>
+
   </div>
 </template>
 
 <style scoped>
-
+.margin-notification {
+  margin-top: 2.5%;
+}
 </style>
