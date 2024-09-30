@@ -15,9 +15,9 @@ function deleteImageFromBase() {
     file_to_delete : props.linkToDelete
   };
   axios
-      .post(`${fetch_url}/image-plugin/delete_image`, json_body, {
+      .post(`${fetch_url}/image-plugin/delete_image/`, json_body, {
         headers : {
-          "Content-Type" : "application/json"
+          "Content-Type" : "application/json",
         }
       })
       .then((response) => {

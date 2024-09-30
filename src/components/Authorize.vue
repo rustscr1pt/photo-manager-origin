@@ -5,7 +5,7 @@ import Button from "primevue/button";
 import {AuthorizationBody, AuthorizationPostRequest} from "@/structs/interfaces.ts";
 import axios from "axios";
 import {fetch_url} from "@/structs/urls.ts";
-import {defineEmits, ref, watch} from "vue";
+import {defineEmits, onMounted, ref, watch} from "vue";
 
 const props = defineProps<{
   modelValue : AuthorizationBody
@@ -19,7 +19,8 @@ const emit = defineEmits(['update:modelValue']);
 watch(() => props.modelValue, (newValue) => {
   userLogin.value = newValue.userLogin;
   userPassword.value = newValue.userPassword;
-}, {immediate : true})
+}, {immediate : true});
+
 function updateState() : void {
   const newValue : AuthorizationBody = {
     isAuthorized : true,
@@ -28,6 +29,7 @@ function updateState() : void {
   }
   emit('update:modelValue', newValue)
 }
+
 function handleLoginAttempt() : void {
   const body : AuthorizationPostRequest = {
     login : userLogin.value,
@@ -42,6 +44,7 @@ function handleLoginAttempt() : void {
       })
       .then((response) => {
         if (response.data.is_succeed) {
+          sessionStorage.setItem("auth-token", response.data.message);
           updateState();
         }
         else {

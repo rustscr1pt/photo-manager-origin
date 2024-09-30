@@ -1,31 +1,33 @@
 <script setup lang="ts">
-import {selectorState} from "@/structs/selectorState.ts";
+import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts";
 import Button from "primevue/button";
-import {defineEmits} from "vue";
-
-const emit = defineEmits(['update:modelValue']);
 
 const props = defineProps<{
-  modelValue : selectorState,
   label : string,
   severity : string,
   icon : string,
   color : string,
   width : string,
-  fontSize : string
+  fontSize : string,
+  condition : string
 }>()
 
-// Using this function to update the state when it's clicked
-function updateState() : void {
-  const newState = props.modelValue === selectorState.UploadImages ? selectorState.DeleteImages : selectorState.UploadImages;
-  emit('update:modelValue', newState);
+function changeScreen() : void {
+  const store = useScreenSelectorStore();
+  if (props.condition === "delete") {
+    store.setToUpload();
+  }
+  else {
+    store.setToWatch();
+  }
 }
+
 </script>
 
 <template>
   <Button
       :label="props.label"
-      @click="updateState"
+      @click="changeScreen"
       :severity="props.severity"
       :icon="props.icon"
       rounded

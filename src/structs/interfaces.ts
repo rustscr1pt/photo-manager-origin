@@ -2,10 +2,6 @@ interface RuleObject {
     sentence : string
 }
 
-interface ImageDataTableSample {
-    extracted : string[]
-}
-
 interface ImageToDeletePost {
     file_to_delete : string
 }
