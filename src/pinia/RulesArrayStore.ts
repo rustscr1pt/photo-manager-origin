@@ -14,6 +14,7 @@ export const useRulesArrayStore = defineStore("RulesArray", {
         browseArray : release_li_for_data(ReleaseEnum.browseArray)
     }),
     getters : {
-        getRulesArray : (state) => state.rulesArray
+        getRulesArray : (state) => state.rulesArray.flatMap((element) => element.sentence),
+        getBrowseArray : (state) => state.browseArray.flatMap((element) => element.sentence)
     }
 })
