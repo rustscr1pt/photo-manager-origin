@@ -21,6 +21,11 @@ export const useAuthorizationBodyStore = defineStore('AuthorizationBody', {
         },
         setPassword(newValue : string) : void {
             this.userPassword = newValue
+        },
+        clearAndSetAsAuthorized() : void {
+            this.isAuthorized = true;
+            this.userLogin = "";
+            this.userPassword = "";
         }
     }
 })

@@ -2,59 +2,26 @@
 import FloatLabel from "primevue/floatlabel";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import {AuthorizationBody, AuthorizationPostRequest} from "@/structs/interfaces.ts";
-import axios from "axios";
-import {fetch_url} from "@/structs/urls.ts";
-import {defineEmits, onMounted, ref, watch} from "vue";
+import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
+import {computed, onMounted} from "vue";
+import handleLoginAttempt from "@/structs/tool_functions/handleLoginAttempt.ts";
 
-const props = defineProps<{
-  modelValue : AuthorizationBody
-}>();
+const authStore = useAuthorizationBodyStore();
 
-const userLogin = ref(props.modelValue.userLogin);
-const userPassword = ref(props.modelValue.userPassword);
+const userLogin = computed({
+  get : () => authStore.getLogin,
+  set : (value : string) => authStore.setLogin(value)
+})
 
-const emit = defineEmits(['update:modelValue']);
+const userPassword = computed({
+  get : () => authStore.getPassword,
+  set : (value : string) => authStore.setPassword(value)
+})
 
-watch(() => props.modelValue, (newValue) => {
-  userLogin.value = newValue.userLogin;
-  userPassword.value = newValue.userPassword;
-}, {immediate : true});
+onMounted(() => {
 
-function updateState() : void {
-  const newValue : AuthorizationBody = {
-    isAuthorized : true,
-    userLogin : "",
-    userPassword : ""
-  }
-  emit('update:modelValue', newValue)
-}
+})
 
-function handleLoginAttempt() : void {
-  const body : AuthorizationPostRequest = {
-    login : userLogin.value,
-    password : userPassword.value
-  };
-  console.log(body)
-  axios
-      .post(`${fetch_url}/api/login/attempt`, body, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then((response) => {
-        if (response.data.is_succeed) {
-          sessionStorage.setItem("auth-token", response.data.message);
-          updateState();
-        }
-        else {
-          console.log(response.data)
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-}
 </script>
 <template>
   <div class="authorize-main-div">
