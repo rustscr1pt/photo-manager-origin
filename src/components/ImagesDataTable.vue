@@ -6,6 +6,7 @@ import extract_file_format from "@/structs/tool_functions/extract_file_format.ts
 import TableDeleteButton from "@/components/TableDeleteButton.vue";
 import { ImageData } from "@/structs/interfaces.ts";
 import fetchImages from "@/structs/tool_functions/fetchImages.ts";
+import fetchImageSize from "@/structs/tool_functions/fetchImageSize.ts";
 
 // Store the data for the table
 const imageData = ref<ImageData[]>([]);
@@ -14,13 +15,20 @@ const expandedRows = ref([]);
 
 // Function to load the table data
 async function loadTable(): Promise<void> {
-  const images = await fetchImages();
-  imageData.value = images.map((img, index) => ({
-    index: `${index + 1}`,
-    name: `${img}`,
-    category: "Изображение",
-    format: extract_file_format(img)
-  }));
+  try {
+    const images = await fetchImages();
+    const imageDataPromises = images.map(async (img, index) => ({
+      index: `${index + 1}`,
+      name: `${img}`,
+      category: "Изображение",
+      format: extract_file_format(img),
+      size : await fetchImageSize(img)
+    }))
+    imageData.value = await Promise.all(imageDataPromises);
+  }
+  catch (err) {
+    console.log(err)
+  }
 }
 //
 // Load data on component mount
@@ -40,20 +48,20 @@ onMounted(async () => {
         tableStyle="min-width: 50rem"
         :style="{ width: '80%' }"
     >
-    <Column expander style="width: 3em"/>
-    <Column field="index" header="Индекс"></Column>
-    <Column field="name" header="Ссылка"></Column>
-    <Column field="category" header="Тип данных"></Column>
-    <Column field="format" header="Формат"></Column>
-    <Column header="Удалить">
-      <template #body="slotProps">
-        <TableDeleteButton
-            :link-to-delete="slotProps.data.name"
-            @imageDeleted="loadTable"
-        />
-      </template>
-    </Column>
-
+      <Column expander style="width: 3em"/>
+      <Column field="index" header="Индекс"></Column>
+      <Column field="name" header="Ссылка"></Column>
+      <Column field="category" header="Тип данных"></Column>
+      <Column field="format" header="Формат"></Column>
+      <Column field="size" header="Размер"></Column>
+      <Column header="Удалить">
+        <template #body="slotProps">
+          <TableDeleteButton
+              :link-to-delete="slotProps.data.name"
+              @imageDeleted="loadTable"
+          />
+        </template>
+      </Column>
     <!-- Expanded row content to display image -->
     <template #expansion="slotProps">
       <div class="photo-expansion-div">
