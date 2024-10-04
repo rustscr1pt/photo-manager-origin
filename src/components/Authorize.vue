@@ -5,6 +5,7 @@ import Button from "primevue/button";
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
 import {computed, onMounted} from "vue";
 import handleLoginAttempt from "@/structs/tool_functions/handleLoginAttempt.ts";
+import stealthLoginAttempt from "@/structs/tool_functions/stealthLoginAttempt.ts";
 
 const authStore = useAuthorizationBodyStore();
 
@@ -19,7 +20,7 @@ const userPassword = computed({
 })
 
 onMounted(() => {
-
+  stealthLoginAttempt()
 })
 
 </script>

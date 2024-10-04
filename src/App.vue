@@ -7,7 +7,6 @@ import ImageButton from "@/components/ImageButton.vue";
 import ChangeScreensContainer from "@/components/ChangeScreensContainer.vue";
 import ImagesDataTable from "@/components/ImagesDataTable.vue";
 import Authorize from "@/components/Authorize.vue";
-import {onMounted} from "vue";
 
 export default {
   components: {
@@ -22,14 +21,10 @@ export default {
 </script>
 
 <script setup lang="ts">
-import hiddenAuth from "@/structs/tool_functions/hiddenAuth.ts";
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
 import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts"; // Import interface
 const authStore = useAuthorizationBodyStore();
 const screenStore = useScreenSelectorStore();
-onMounted(() => {
-  hiddenAuth()
-})
 </script>
 
 // using v-model we pass props that we would like to change in the future.
