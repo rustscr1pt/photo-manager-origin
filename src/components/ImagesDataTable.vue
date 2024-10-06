@@ -16,13 +16,14 @@ const expandedRows = ref([]);
 // Function to load the table data
 async function loadTable(): Promise<void> {
   try {
-    const images = await fetchImages();
-    const imageDataPromises = images.map(async (img, index) => ({
+    const images : string[] = await fetchImages();
+    const sizes : string[] = await fetchImageSize()
+    const imageDataPromises = images.map((img, index) => ({
       index: `${index + 1}`,
       name: `${img}`,
       category: "Изображение",
       format: extract_file_format(img),
-      size : await fetchImageSize(img)
+      size : sizes[index] ?? "Null"
     }))
     imageData.value = await Promise.all(imageDataPromises);
   }
