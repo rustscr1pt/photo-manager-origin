@@ -17,7 +17,7 @@ const expandedRows = ref([]);
 async function loadTable(): Promise<void> {
   try {
     const images : string[] = await fetchImages();
-    const sizes : string[] = await fetchImageSize()
+    const sizes : string[] = await fetchImageSize();
     const imageDataPromises = images.map((img, index) => ({
       index: `${index + 1}`,
       name: `${img}`,
