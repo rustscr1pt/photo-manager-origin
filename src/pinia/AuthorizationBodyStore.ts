@@ -3,7 +3,7 @@ import {AuthorizationBody} from "@/structs/interfaces.ts";
 
 export const useAuthorizationBodyStore = defineStore('AuthorizationBody', {
     state: () : AuthorizationBody => ({
-        isAuthorized : true,
+        isAuthorized : false,
         userLogin : "",
         userPassword : ""
     }),
