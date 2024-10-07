@@ -18,9 +18,15 @@ interface AuthorizationBody {
     userLogin : string,
     userPassword : string
 }
+
 interface AuthorizationPostRequest {
     login : string,
     password : string
 }
-export {RuleObject, ImageToDeletePost, ImageData, AuthorizationBody, AuthorizationPostRequest}
+
+interface ImageSizeBufferStore {
+    totalImages : number,
+    bufferSize : number,
+}
+export {RuleObject, ImageToDeletePost, ImageData, AuthorizationBody, AuthorizationPostRequest, ImageSizeBufferStore}
 
