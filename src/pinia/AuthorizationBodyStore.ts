@@ -28,7 +28,7 @@ export const useAuthorizationBodyStore = defineStore('AuthorizationBody', {
             this.userPassword = "";
         },
         logOutAndReset() : void {
-            sessionStorage.clear()
+            localStorage.clear();
             this.isAuthorized = false;
             this.userLogin = "";
             this.userPassword = "";
