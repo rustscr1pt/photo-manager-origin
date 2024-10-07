@@ -2,11 +2,11 @@
 import { ref, onMounted } from 'vue';
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import extract_file_format from "@/structs/tool_functions/extract_file_format.ts";
+import extract_file_format from "@/structs/tool_functions/data_managing_functions/extract_file_format.ts";
 import TableDeleteButton from "@/components/TableDeleteButton.vue";
 import { ImageData } from "@/structs/interfaces.ts";
-import fetchImages from "@/structs/tool_functions/fetchImages.ts";
-import fetchImageSize from "@/structs/tool_functions/fetchImageSize.ts";
+import fetchImages from "@/structs/tool_functions/fetch_functions/fetchImages.ts";
+import fetchImageSize from "@/structs/tool_functions/fetch_functions/fetchImageSize.ts";
 
 // Store the data for the table
 const imageData = ref<ImageData[]>([]);
