@@ -7,9 +7,9 @@ interface StealthLoginInterface {
 }
 
 export default function stealthLoginAttempt() : void {
-    if (sessionStorage.getItem("auth-token") !== null) {
+    if (localStorage.getItem("auth-token") !== null) {
         const bodyToSent : StealthLoginInterface = {
-            token : sessionStorage.getItem("auth-token") as string
+            token : localStorage.getItem("auth-token") as string
         };
         axios
             .post(`${fetch_url}/api/login/stealth`, bodyToSent, {

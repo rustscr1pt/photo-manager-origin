@@ -18,7 +18,7 @@ export default function handleLoginAttempt() : void {
         })
         .then((response) => {
             if (response.data.is_succeed) {
-                sessionStorage.setItem("auth-token", response.data.message);
+                localStorage.setItem("auth-token", response.data.message);
                 authStore.clearAndSetAsAuthorized();
             }
             else {
