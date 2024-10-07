@@ -2,46 +2,18 @@
 import { ref, onMounted } from 'vue';
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import extract_file_format from "@/structs/tool_functions/data_managing_functions/extract_file_format.ts";
 import TableDeleteButton from "@/components/TableDeleteButton.vue";
 import { ImageData } from "@/structs/interfaces.ts";
-import fetchImages from "@/structs/tool_functions/fetch_functions/fetchImages.ts";
-import fetchImageSize from "@/structs/tool_functions/fetch_functions/fetchImageSize.ts";
 import TableBufferCounter from "@/components/TableBufferCounter.vue";
-import {useImageSizeBufferStore} from "@/pinia/ImageSizeBufferStore.ts";
+import {loadTable} from "@/components/ImagesDataTable/functions/loadTable.ts";
 
 // Store the data for the table
 const imageData = ref<ImageData[]>([]);
 // Keep track of expanded rows
 const expandedRows = ref([]);
-// Init store for updating values
-const useImageSizeBuffer = useImageSizeBufferStore();
-
-// Function to load the table data
-async function loadTable(): Promise<void> {
-  try {
-
-    const images : string[] = await fetchImages();
-    const sizes : string[] = await fetchImageSize();
-
-    useImageSizeBuffer.updateValuesFromDataTable(images, sizes);
-
-    const imageDataPromises = images.map((img, index) => ({
-      index: `${index + 1}`,
-      name: `${img}`,
-      category: "Изображение",
-      format: extract_file_format(img),
-      size : sizes[index] ?? "Null"
-    }))
-    imageData.value = await Promise.all(imageDataPromises);
-  }
-  catch (err) {
-    console.log(err)
-  }
-}
 // Load data on component mount
 onMounted(async () => {
-  await loadTable();
+  await loadTable(imageData);
 });
 </script>
 

@@ -5,8 +5,9 @@ import TopDescription from "@/components/TopDescription.vue";
 import SendImageComponent from "@/components/SendImageComponent.vue";
 import ImageButton from "@/components/ImageButton.vue";
 import ChangeScreensContainer from "@/components/ChangeScreensContainer.vue";
-import ImagesDataTable from "@/components/ImagesDataTable.vue";
+import ImagesDataTable from "@/components/ImagesDataTable/ImagesDataTable.vue";
 import Authorize from "@/components/Authorize.vue";
+import Fab from "@/components/Fab.vue";
 
 export default {
   components: {
@@ -16,14 +17,15 @@ export default {
     ImageButton,
     SendImageComponent,
     TopDescription,
-    SubmitForm }
+    SubmitForm,
+    Fab
+  }
 };
 </script>
 
 <script setup lang="ts">
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
 import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts";
-import Fab from "@/components/Fab.vue"; // Import interface
 const authStore = useAuthorizationBodyStore();
 const screenStore = useScreenSelectorStore();
 </script>
