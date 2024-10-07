@@ -8,17 +8,24 @@ import { ImageData } from "@/structs/interfaces.ts";
 import fetchImages from "@/structs/tool_functions/fetch_functions/fetchImages.ts";
 import fetchImageSize from "@/structs/tool_functions/fetch_functions/fetchImageSize.ts";
 import TableBufferCounter from "@/components/TableBufferCounter.vue";
+import {useImageSizeBufferStore} from "@/pinia/ImageSizeBufferStore.ts";
 
 // Store the data for the table
 const imageData = ref<ImageData[]>([]);
 // Keep track of expanded rows
 const expandedRows = ref([]);
+// Init store for updating values
+const useImageSizeBuffer = useImageSizeBufferStore();
 
 // Function to load the table data
 async function loadTable(): Promise<void> {
   try {
+
     const images : string[] = await fetchImages();
     const sizes : string[] = await fetchImageSize();
+
+    useImageSizeBuffer.updateValuesFromDataTable(images, sizes);
+
     const imageDataPromises = images.map((img, index) => ({
       index: `${index + 1}`,
       name: `${img}`,
