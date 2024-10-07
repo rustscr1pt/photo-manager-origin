@@ -31,7 +31,6 @@ async function loadTable(): Promise<void> {
     console.log(err)
   }
 }
-//
 // Load data on component mount
 onMounted(async () => {
   await loadTable();
