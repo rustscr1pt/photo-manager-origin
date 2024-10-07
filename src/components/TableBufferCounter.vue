@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {useImageSizeBufferStore} from "@/pinia/ImageSizeBufferStore.ts";
+import {kb_to_mb_converter} from "../structs/tool_functions/data_managing_functions/kb_to_mb_converter.ts";
 const imageBufferStore = useImageSizeBufferStore();
 </script>
 
@@ -12,7 +13,7 @@ const imageBufferStore = useImageSizeBufferStore();
           Всего изображений обнаружено : {{ imageBufferStore.getTotalImages }}
         </li>
         <li>
-          Общий размер всех изображений в базе : {{ imageBufferStore.getBufferSize }} кб
+          Общий размер всех изображений в базе : {{ imageBufferStore.getBufferSize }} кб ~ {{ kb_to_mb_converter(imageBufferStore.getBufferSize) }} мб
         </li>
       </ul>
     </section>
