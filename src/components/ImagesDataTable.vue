@@ -7,6 +7,7 @@ import TableDeleteButton from "@/components/TableDeleteButton.vue";
 import { ImageData } from "@/structs/interfaces.ts";
 import fetchImages from "@/structs/tool_functions/fetch_functions/fetchImages.ts";
 import fetchImageSize from "@/structs/tool_functions/fetch_functions/fetchImageSize.ts";
+import TableBufferCounter from "@/components/TableBufferCounter.vue";
 
 // Store the data for the table
 const imageData = ref<ImageData[]>([]);
@@ -38,6 +39,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <TableBufferCounter/>
   <div class="card">
     <DataTable
         :value="imageData"
@@ -78,7 +80,11 @@ onMounted(async () => {
 
 <style scoped>
 .card {
-  margin-top: 5%;
+  margin: 3% 0 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
 }
 
 /* Styles for the expanded image */

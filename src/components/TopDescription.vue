@@ -18,7 +18,7 @@ const arrayStore = useRulesArrayStore();
       <h2>
         Возможности панели управления:
       </h2>
-      <ul>
+      <ul class="TopDescriptionSectionUlAlignLeft">
         <li v-for="li in arrayStore.getBrowseArray">{{li}}</li>
       </ul>
     </article>
@@ -34,9 +34,11 @@ const arrayStore = useRulesArrayStore();
       <h2 class="presentation">
         Правила для корректной загрузки:
       </h2>
-      <ul>
-        <li v-for="li in arrayStore.getRulesArray">{{li}}</li>
-      </ul>
+      <section class="TopDescriptionSectionUlAlignLeft">
+        <ul>
+          <li v-for="li in arrayStore.getRulesArray">{{li}}</li>
+        </ul>
+      </section>
     </article>
   </div>
 </template>
@@ -55,9 +57,16 @@ h1 {
   text-align: center;
 }
 .TopDescriptionSection {
-  width: 80%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1% 0 0 0;
+}
+.TopDescriptionSectionUlAlignLeft {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 </style>
