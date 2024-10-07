@@ -26,6 +26,12 @@ export const useAuthorizationBodyStore = defineStore('AuthorizationBody', {
             this.isAuthorized = true;
             this.userLogin = "";
             this.userPassword = "";
+        },
+        logOutAndReset() : void {
+            localStorage.removeItem("auth-token");
+            this.isAuthorized = false;
+            this.userLogin = "";
+            this.userPassword = "";
         }
     }
 })

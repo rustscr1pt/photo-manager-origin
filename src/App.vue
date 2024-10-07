@@ -22,7 +22,8 @@ export default {
 
 <script setup lang="ts">
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
-import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts"; // Import interface
+import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts";
+import Fab from "@/components/Fab.vue"; // Import interface
 const authStore = useAuthorizationBodyStore();
 const screenStore = useScreenSelectorStore();
 </script>
@@ -30,6 +31,7 @@ const screenStore = useScreenSelectorStore();
 // using v-model we pass props that we would like to change in the future.
 <template>
   <div v-if="authStore.getAuth">
+    <Fab/>
     <ChangeScreensContainer/>
     <div v-if="screenStore.getScreenState === selectorState.UploadImages">
       <TopDescription/>
