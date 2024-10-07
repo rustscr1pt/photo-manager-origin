@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {selectorState} from "@/structs/selectorState.ts";
+import {selectorState} from "@/structs/enums.ts";
 import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts";
 import {useRulesArrayStore} from "@/pinia/RulesArrayStore.ts";
 const screenStore = useScreenSelectorStore();

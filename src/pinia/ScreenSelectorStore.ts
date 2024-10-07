@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {selectorState} from "@/structs/selectorState.ts";
+import {selectorState} from "@/structs/enums.ts";
 
 export const useScreenSelectorStore = defineStore("ScreenSelector", {
     state : () => ({

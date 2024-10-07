@@ -1,5 +1,5 @@
 import {RuleObject} from "@/structs/interfaces.ts";
-import {ReleaseEnum} from "@/structs/ReleaseEnum.ts";
+import {ReleaseEnum} from "@/structs/enums.ts";
 
 export default function release_li_for_data(condition : ReleaseEnum) : RuleObject[] {
     switch (condition) {

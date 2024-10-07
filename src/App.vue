@@ -1,5 +1,5 @@
 <script lang="ts">
-import {selectorState} from "@/structs/selectorState.ts";
+import {selectorState} from "@/structs/enums.ts";
 import SubmitForm from "@/components/SubmitForm.vue";
 import TopDescription from "@/components/TopDescription.vue";
 import SendImageComponent from "@/components/SendImageComponent.vue";

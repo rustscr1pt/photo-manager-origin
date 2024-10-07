@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import release_li_for_data from "@/structs/tool_functions/release_li_for_data.ts";
-import {ReleaseEnum} from "@/structs/ReleaseEnum.ts";
+import {ReleaseEnum} from "@/structs/enums.ts";
 import {RuleObject} from "@/structs/interfaces.ts";
 
 interface RulesArrayInterface {
