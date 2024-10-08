@@ -6,7 +6,7 @@ import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
 import {computed, onMounted, ref} from "vue";
 import handleLoginAttempt from "@/structs/tool_functions/login_functions/handleLoginAttempt.ts";
 import stealthLoginAttempt from "@/structs/tool_functions/login_functions/stealthLoginAttempt.ts";
-import gsap from "gsap";
+import {authorizeGsap} from "@/gsap/Authorize/authorize-gsap.ts";
 
 const authStore = useAuthorizationBodyStore();
 
@@ -24,20 +24,7 @@ const scopeRef = ref();
 
 onMounted(() => {
   if (!stealthLoginAttempt()) {
-    let ctx = gsap.context((self) => {
-      const targets = gsap.utils.toArray('.gsap-animate-auth-float');
-      const timeline = gsap.timeline();
-      timeline
-          .from(targets, {
-            opacity : 0,
-            yPercent: -50,
-            stagger : 0.2
-          })
-          .from('#buttonRef', {
-            opacity : 0,
-            yPercent: 50
-          })
-    }, scopeRef.value)
+    authorizeGsap(scopeRef)
   }
 })
 
