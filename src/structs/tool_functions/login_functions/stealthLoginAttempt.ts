@@ -6,7 +6,7 @@ interface StealthLoginInterface {
     token : string
 }
 
-export default function stealthLoginAttempt() : void {
+export default function stealthLoginAttempt() : boolean {
     if (localStorage.getItem("auth-token") !== null) {
         const bodyToSent : StealthLoginInterface = {
             token : localStorage.getItem("auth-token") as string
@@ -21,13 +21,17 @@ export default function stealthLoginAttempt() : void {
                 if (response.data.is_succeed) {
                     const authStore = useAuthorizationBodyStore();
                     authStore.clearAndSetAsAuthorized();
+                    return true
                 }
                 else {
                     console.log(response.data)
+                    return false
                 }
             })
             .catch((err) => {
                 console.log(err)
+                return false
             })
     }
+    return false
 }

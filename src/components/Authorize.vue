@@ -3,9 +3,10 @@ import FloatLabel from "primevue/floatlabel";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
-import {computed, onMounted} from "vue";
+import {computed, onMounted, ref} from "vue";
 import handleLoginAttempt from "@/structs/tool_functions/login_functions/handleLoginAttempt.ts";
 import stealthLoginAttempt from "@/structs/tool_functions/login_functions/stealthLoginAttempt.ts";
+import gsap from "gsap";
 
 const authStore = useAuthorizationBodyStore();
 
@@ -19,23 +20,41 @@ const userPassword = computed({
   set : (value : string) => authStore.setPassword(value)
 })
 
+const scopeRef = ref();
+
 onMounted(() => {
-  stealthLoginAttempt()
+  if (!stealthLoginAttempt()) {
+    let ctx = gsap.context((self) => {
+      const targets = gsap.utils.toArray('.gsap-animate-auth-float');
+      const timeline = gsap.timeline();
+      timeline
+          .from(targets, {
+            opacity : 0,
+            yPercent: -50,
+            stagger : 0.2
+          })
+          .from('#buttonRef', {
+            opacity : 0,
+            yPercent: 50
+          })
+    }, scopeRef.value)
+  }
 })
 
 </script>
 <template>
-  <div class="authorize-main-div">
+  <div class="authorize-main-div" ref="scopeRef">
     <div>
-      <FloatLabel>
+      <FloatLabel class="gsap-animate-auth-float">
         <label for="username">Логин</label>
         <InputText id="username" v-model="userLogin"/>
       </FloatLabel>
-      <FloatLabel class="margin-field">
+      <FloatLabel class="margin-field gsap-animate-auth-float">
         <label for="password">Пароль</label>
         <InputText id="password" v-model="userPassword" type="password"/>
       </FloatLabel>
       <Button
+          id="buttonRef"
           class="margin-field"
           label="Войти"
           icon="pi pi-sign-in"
