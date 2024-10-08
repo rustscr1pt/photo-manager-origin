@@ -27,7 +27,7 @@ onMounted(async () => {
         showGridlines
         stripedRows
         tableStyle="min-width: 50rem"
-        :style="{ width: '80%' }"
+        :style="{ width: '100%' }"
     >
       <Column expander style="width: 3em"/>
       <Column field="index" header="Индекс"></Column>
