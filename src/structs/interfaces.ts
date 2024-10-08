@@ -28,5 +28,10 @@ interface ImageSizeBufferStore {
     totalImages : number,
     bufferSize : number,
 }
-export {RuleObject, ImageToDeletePost, ImageData, AuthorizationBody, AuthorizationPostRequest, ImageSizeBufferStore}
+
+interface FetchImageSize {
+    fileSize : string,
+    fileDimensions : string
+}
+export {RuleObject, ImageToDeletePost, ImageData, AuthorizationBody, AuthorizationPostRequest, ImageSizeBufferStore, FetchImageSize}
 

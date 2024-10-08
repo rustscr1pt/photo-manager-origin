@@ -35,6 +35,7 @@ onMounted(async () => {
       <Column field="category" header="Тип данных"></Column>
       <Column field="format" header="Формат"></Column>
       <Column field="size" header="Размер"></Column>
+      <Column field="dimension" header="Разрешение"></Column>
       <Column header="Удалить">
         <template #body="slotProps">
           <TableDeleteButton

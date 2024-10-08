@@ -1,7 +1,8 @@
 import axios from "axios";
 import {fetch_url} from "@/structs/urls.ts";
+import {FetchImageSize} from "@/structs/interfaces.ts";
 
-export default async function fetchImageSize() : Promise<string[]> {
+export default async function fetchImageSize() : Promise<FetchImageSize[]> {
     try {
         const response = await axios
             .get(`${fetch_url}/image-plugin/extract_sizes/`, {
@@ -10,14 +11,24 @@ export default async function fetchImageSize() : Promise<string[]> {
                 }
             });
         if (response.data.extracted && response.data.extracted.length > 0) {
-            return response.data.extracted as string[];
+            return response.data.extracted as FetchImageSize[];
         }
         else {
-            return ["Null"]
+            return [
+                {
+                    fileSize : "Null",
+                    fileDimensions : "Null"
+                }
+            ]
         }
     }
     catch (err) {
         console.log(err)
-        return ["Null"]
+        return [
+            {
+                fileSize : "Null",
+                fileDimensions : "Null"
+            }
+        ]
     }
 }
