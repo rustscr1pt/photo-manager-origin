@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import {Ref} from "vue";
 
-export function authorizeGsap(scopeRef : Ref<any, any>) : void {
+export function authorizeGsap(scopeRef : Ref<any, any>) : gsap.Context {
     let ctx = gsap.context((self) => {
         const targets = gsap.utils.toArray('.gsap-animate-auth-float');
         const timeline = gsap.timeline();
@@ -16,5 +16,6 @@ export function authorizeGsap(scopeRef : Ref<any, any>) : void {
                 yPercent: 50,
                 duration : 0.6
             })
-    }, scopeRef.value)
+    }, scopeRef.value);
+    return ctx
 }

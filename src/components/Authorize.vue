@@ -3,7 +3,7 @@ import FloatLabel from "primevue/floatlabel";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
-import {computed, onMounted, ref} from "vue";
+import {computed, onMounted, onUnmounted, ref} from "vue";
 import handleLoginAttempt from "@/structs/tool_functions/login_functions/handleLoginAttempt.ts";
 import stealthLoginAttempt from "@/structs/tool_functions/login_functions/stealthLoginAttempt.ts";
 import {authorizeGsap} from "@/gsap/Authorize/authorize-gsap.ts";
@@ -22,9 +22,17 @@ const userPassword = computed({
 
 const scopeRef = ref();
 
+let ctx : gsap.Context | undefined;
+
 onMounted(() => {
   if (!stealthLoginAttempt()) {
-    authorizeGsap(scopeRef)
+    ctx = authorizeGsap(scopeRef)
+  }
+})
+
+onUnmounted(() => {
+  if (ctx) {
+    ctx.clear()
   }
 })
 
