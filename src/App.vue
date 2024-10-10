@@ -26,7 +26,8 @@ export default {
 <script setup lang="ts">
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
 import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts";
-import DeleteImagesComponentCollected from "@/components/DeleteImagesComponentCollected.vue";
+import DeleteImagesComponentCollected from "@/components/CollectedComponents/DeleteImagesComponentCollected.vue";
+import UploadImagesComponentCollected from "@/components/CollectedComponents/UploadImagesComponentCollected.vue";
 const authStore = useAuthorizationBodyStore();
 const screenStore = useScreenSelectorStore();
 </script>
@@ -37,9 +38,7 @@ const screenStore = useScreenSelectorStore();
     <Fab/>
     <ChangeScreensContainer/>
     <div v-if="screenStore.getScreenState === selectorState.UploadImages">
-      <TopDescription/>
-      <SubmitForm/>
-      <SendImageComponent/>
+      <UploadImagesComponentCollected/>
     </div>
     <div v-else>
       <DeleteImagesComponentCollected/>

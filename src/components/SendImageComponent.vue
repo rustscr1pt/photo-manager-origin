@@ -61,7 +61,7 @@ function uploadImage(event : {files : File[]}) {
 </script>
 
 <template>
-  <div>
+  <div class="send-image-component-gsap-target">
     <FileUpload
         mode="basic"
         name="file"
@@ -73,7 +73,6 @@ function uploadImage(event : {files : File[]}) {
         chooseLabel="Browse"
     />
     <Message class="margin-notification" v-if="message" :severity="messageType === 'success' ? 'success' : 'error'">{{message}}</Message>
-
   </div>
 </template>
 

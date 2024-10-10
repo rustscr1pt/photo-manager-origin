@@ -3,7 +3,7 @@
 
 <template>
   <section class="submit-form-section">
-    <p>Выберите до 10 изображений для загрузки</p>
+    <p class="submit-form-target-gsap">Выберите до 10 изображений для загрузки</p>
   </section>
 </template>
 

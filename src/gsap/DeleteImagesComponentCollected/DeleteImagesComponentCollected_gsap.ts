@@ -1,7 +1,7 @@
 import {Ref} from "vue";
 import gsap from "gsap";
 
-export function topDescriptionGsap(scopeRef : Ref<any, any>) : gsap.Context {
+export function deleteImagesComponentCollected_gsap(scopeRef : Ref<any, any>) : gsap.Context {
     let ctx = gsap.context((self) => {
         const li_targets = gsap.utils.toArray('.li-description-target');
         const h_target = document.querySelector('.h-description-target');

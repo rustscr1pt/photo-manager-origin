@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import TableBufferCounter from "@/components/TableBufferCounter.vue";
-import ImagesDataTable from "@/components/ImagesDataTable/ImagesDataTable.vue";
 import TopDescription from "@/components/TopDescription.vue";
+import SubmitForm from "@/components/SubmitForm.vue";
+import SendImageComponent from "@/components/SendImageComponent.vue";
 import {onMounted, onUnmounted, ref} from "vue";
-import {topDescriptionGsap} from "@/gsap/TopDescription/topdescription-gsap.ts";
+import {uploadImagesComponentCollected_gsap} from "@/gsap/UploadImagesComponentCollected/UploadImagesComponentCollected_gsap.ts";
 
 const scopeRef = ref();
 let ctx : gsap.Context | undefined;
 
 onMounted(() => {
-  ctx = topDescriptionGsap(scopeRef);
+  ctx = uploadImagesComponentCollected_gsap(scopeRef);
 })
 onUnmounted(() => {
   if (ctx) {
@@ -21,8 +21,8 @@ onUnmounted(() => {
 <template>
 <div ref="scopeRef">
   <TopDescription/>
-  <TableBufferCounter/>
-  <ImagesDataTable/>
+  <SubmitForm/>
+  <SendImageComponent/>
 </div>
 </template>
 
