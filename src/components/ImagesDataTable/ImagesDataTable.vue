@@ -4,7 +4,6 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import TableDeleteButton from "@/components/TableDeleteButton.vue";
 import { ImageData } from "@/structs/interfaces.ts";
-import TableBufferCounter from "@/components/TableBufferCounter.vue";
 import {loadTable} from "@/components/ImagesDataTable/functions/loadTable.ts";
 
 // Store the data for the table
