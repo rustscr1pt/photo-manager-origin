@@ -18,7 +18,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <TableBufferCounter/>
   <div class="card">
     <DataTable
         :value="imageData"

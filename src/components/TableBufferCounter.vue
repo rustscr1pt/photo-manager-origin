@@ -6,13 +6,13 @@ const imageBufferStore = useImageSizeBufferStore();
 
 <template>
   <article class="TopDescriptionSection">
-    <h2 class="presentation">Информация о изображениях:</h2>
+    <h2 class="h2-gsap-table-buffer">Информация о изображениях:</h2>
     <section class="TopDescriptionSectionUlAlignLeft">
       <ul>
-        <li>
+        <li class="li-gsap-table-buffer">
           Всего изображений обнаружено : {{ imageBufferStore.getTotalImages }}
         </li>
-        <li>
+        <li class="li-gsap-table-buffer">
           Общий размер всех изображений в базе : {{ imageBufferStore.getBufferSize }} кб ~ {{ kb_to_mb_converter(imageBufferStore.getBufferSize) }} мб
         </li>
       </ul>

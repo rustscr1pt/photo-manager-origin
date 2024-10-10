@@ -2,22 +2,8 @@
 import {selectorState} from "@/structs/enums.ts";
 import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts";
 import {useRulesArrayStore} from "@/pinia/RulesArrayStore.ts";
-import {onMounted, onUnmounted, ref} from "vue";
-import {topDescriptionGsap} from "@/gsap/TopDescription/topdescription-gsap.ts";
 const screenStore = useScreenSelectorStore();
 const arrayStore = useRulesArrayStore();
-
-const scopeRef = ref();
-let ctx : gsap.Context | undefined;
-
-onMounted(() => {
-  ctx = topDescriptionGsap(scopeRef);
-})
-onUnmounted(() => {
-  if (ctx) {
-    ctx.clear()
-  }
-})
 </script>
 
 <template>
