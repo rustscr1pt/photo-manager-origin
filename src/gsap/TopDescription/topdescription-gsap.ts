@@ -9,6 +9,9 @@ export function topDescriptionGsap(scopeRef : Ref<any, any>) : gsap.Context {
         const li_buffer = gsap.utils.toArray('.li-gsap-table-buffer')
         const h_buffer = document.querySelector('.h2-gsap-table-buffer')
 
+        const table_target = document.querySelector('.card');
+        const rows_target = gsap.utils.toArray(".p-datatable-tbody");
+
         const timeline = gsap.timeline();
 
         timeline
@@ -28,6 +31,16 @@ export function topDescriptionGsap(scopeRef : Ref<any, any>) : gsap.Context {
                 duration: 0.5
             })
             .from(li_buffer, {
+                opacity: 0,
+                yPercent: -50,
+                stagger: 0.3
+            })
+            .from(table_target, {
+                opacity: 0,
+                xPercent: -40,
+                duration: 0.5
+            })
+            .from(rows_target, {
                 opacity: 0,
                 yPercent: -50,
                 stagger: 0.3
