@@ -26,23 +26,9 @@ export default {
 <script setup lang="ts">
 import {useAuthorizationBodyStore} from "@/pinia/AuthorizationBodyStore.ts";
 import {useScreenSelectorStore} from "@/pinia/ScreenSelectorStore.ts";
-import TableBufferCounter from "@/components/TableBufferCounter.vue";
-import {onMounted, onUnmounted, ref} from "vue";
-import {topDescriptionGsap} from "@/gsap/TopDescription/topdescription-gsap.ts";
+import DeleteImagesComponentCollected from "@/components/DeleteImagesComponentCollected.vue";
 const authStore = useAuthorizationBodyStore();
 const screenStore = useScreenSelectorStore();
-
-const scopeRef = ref();
-let ctx : gsap.Context | undefined;
-
-onMounted(() => {
-  ctx = topDescriptionGsap(scopeRef);
-})
-onUnmounted(() => {
-  if (ctx) {
-    ctx.clear()
-  }
-})
 </script>
 
 // using v-model we pass props that we would like to change in the future.
@@ -55,10 +41,8 @@ onUnmounted(() => {
       <SubmitForm/>
       <SendImageComponent/>
     </div>
-    <div v-else ref="scopeRef">
-      <TopDescription/>
-      <TableBufferCounter/>
-      <ImagesDataTable/>
+    <div v-else>
+      <DeleteImagesComponentCollected/>
     </div>
   </div>
   <div v-else>
