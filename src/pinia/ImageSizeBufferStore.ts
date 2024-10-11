@@ -12,9 +12,6 @@ export const useImageSizeBufferStore = defineStore('ImageSizeBuffer', {
         getBufferSize : (state) => state.bufferSize
     },
     actions : {
-        updateTotalImagesByLength(array : string[]) : void {
-            this.totalImages = array.length
-        },
         updateValuesFromDataTable(images_vector : string[], sizes_vector : string[]) : void {
             this.totalImages = images_vector.length;
             this.bufferSize = get_total_buffer_size(sizes_vector)

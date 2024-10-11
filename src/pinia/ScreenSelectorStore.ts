@@ -9,9 +9,6 @@ export const useScreenSelectorStore = defineStore("ScreenSelector", {
         getScreenState : (state) => state.ScreenSelectorState
     },
     actions : {
-        toggleScreenState() : void {
-            this.ScreenSelectorState = this.ScreenSelectorState === selectorState.DeleteImages ? selectorState.UploadImages : selectorState.DeleteImages
-        },
         setToWatch() : void {
             this.ScreenSelectorState = selectorState.DeleteImages
         },

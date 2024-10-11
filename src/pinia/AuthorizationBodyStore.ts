@@ -13,9 +13,6 @@ export const useAuthorizationBodyStore = defineStore('AuthorizationBody', {
         getPassword : (state) => state.userPassword
     },
     actions : {
-        toggleAuth() : void {
-            this.isAuthorized = !this.isAuthorized
-        },
         setLogin(newValue : string) : void {
             this.userLogin = newValue
         },
