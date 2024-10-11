@@ -10,7 +10,6 @@ const arrayStore = useRulesArrayStore();
   <div
       v-if="screenStore.getScreenState === selectorState.DeleteImages"
       class="wrapper"
-      ref="scopeRef"
   >
     <h1>
       Просмотреть изображения в базе
